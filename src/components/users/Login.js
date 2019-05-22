@@ -68,7 +68,7 @@ class Login extends Component {
 		this.setState(() => ({ email }));
 	};
 	passwordHandle = e => {
-		e.persist(); //when ever u read diractely in setState use event.persist() must
+		e.persist();
 		this.setState(() => ({ password: e.target.value }));
 	};
 	handleClickShowPassword = () => {
@@ -118,7 +118,7 @@ class Login extends Component {
 					if (token !== "invalid email or password") {
 						this.setState(() => ({ loginError: "" }));
 						localStorage.setItem("token", token);
-						//this.props.history.push("");
+						this.props.history.push("/user/home/");
 						this.props.handleLogin();
 					}
 				})

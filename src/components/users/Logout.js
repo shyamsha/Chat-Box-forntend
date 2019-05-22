@@ -13,7 +13,7 @@ const Logout = props => {
 			props.handleLogout();
 		})
 		.catch(err => {
-			return "somthing went worng";
+			console.log(err);
 		});
 	props.history.push("/user/Login/");
 	return <div />;

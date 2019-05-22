@@ -53,7 +53,6 @@ class Register extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			//same properties have to be here when i create in mongoose
 			username: "",
 			email: "",
 			password: "",

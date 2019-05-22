@@ -3,6 +3,28 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Register from "./components/users/Register";
 import Login from "./components/users/Login";
 import Logout from "./components/users/Logout";
+import Home from "./components/Home/Home";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+// import Typography from "@material-ui/core/Typography";
+// import Button from "@material-ui/core/Button";
+// import IconButton from "@material-ui/core/IconButton";
+// import MenuIcon from "@material-ui/icons/Menu";
+
+const styles = {
+	root: {
+		flexGrow: 1
+	},
+	grow: {
+		flexGrow: 1
+	},
+	menuButton: {
+		marginLeft: -12,
+		marginRight: 20
+	}
+};
 
 class App extends Component {
 	constructor(props) {
@@ -24,6 +46,7 @@ class App extends Component {
 			// login: false
 		}));
 	};
+
 	render() {
 		let login = false;
 		let logout = false;
@@ -33,23 +56,68 @@ class App extends Component {
 		} else {
 			logout = true;
 		}
+		const { classes } = this.props;
 		return (
 			<BrowserRouter>
-				<div style={{ color: "white", textDecoration: "none" }}>
-					{logout && (
-						<div>
-							<Link to="/user/register">Register</Link>
-							<Link to="/user/login">Login</Link>
-						</div>
-					)}
-					{login && (
-						<div>
-							<Link to="/user/logout">Logout</Link>
-						</div>
-					)}
+				<div>
+					<AppBar className={classes.root}>
+						<Toolbar position="static">
+							<Link
+								to="/user/home"
+								style={{
+									color: "white",
+									textDecoration: "none"
+								}}
+							>
+								Home
+							</Link>
+							{logout && (
+								<div>
+									<Link
+										to="/user/register"
+										style={{
+											color: "white",
+											textDecoration: "none",
+											marginLeft: "55rem"
+										}}
+									>
+										Register
+									</Link>
+									{" | "}
+									<Link
+										to="/user/login"
+										style={{
+											color: "white",
+											textDecoration: "none"
+										}}
+									>
+										Login
+									</Link>
+								</div>
+							)}
+							{login && (
+								<div>
+									<Link
+										to="/user/logout"
+										style={{
+											color: "white",
+											textDecoration: "none",
+											marginLeft: "55rem"
+										}}
+									>
+										Logout
+									</Link>
+								</div>
+							)}
+						</Toolbar>
+					</AppBar>
 				</div>
+				<br />
+				<br />
+				<br />
 				<div>
 					<Switch>
+						<Route path="/user/home" component={Home} />
 						<Route path="/user/register" component={Register} exact />
 						<Route
 							path="/user/login"
@@ -75,5 +143,8 @@ class App extends Component {
 		);
 	}
 }
+App.propTypes = {
+	classes: PropTypes.object.isRequired
+};
 
-export default App;
+export default withStyles(styles)(App);
