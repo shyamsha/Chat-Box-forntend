@@ -3,11 +3,15 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Register from "./components/users/Register";
 import Login from "./components/users/Login";
 import Logout from "./components/users/Logout";
+import Chat from "./components/Home/Chat";
+import CreateChannel from "./components/Home/CreateChannel";
+import ChannelList from "./components/Home/ChannelList";
 import Home from "./components/Home/Home";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+//import "./App.css";
 // import Typography from "@material-ui/core/Typography";
 // import Button from "@material-ui/core/Button";
 // import IconButton from "@material-ui/core/IconButton";
@@ -63,7 +67,7 @@ class App extends Component {
 					<AppBar className={classes.root}>
 						<Toolbar position="static">
 							<Link
-								to="/user/home"
+								to="/"
 								style={{
 									color: "white",
 									textDecoration: "none"
@@ -117,7 +121,8 @@ class App extends Component {
 				<br />
 				<div>
 					<Switch>
-						<Route path="/user/home" component={Home} />
+						<Route path="/" component={Chat} exact />
+						<Route path="/channel/show/:id" component={Home} exact />
 						<Route path="/user/register" component={Register} exact />
 						<Route
 							path="/user/login"
@@ -137,6 +142,9 @@ class App extends Component {
 							}}
 							exact
 						/>
+
+						<Route path="/user/createchannel" component={CreateChannel} exact />
+						<Route path="/user/channellist" component={ChannelList} exact />
 					</Switch>
 				</div>
 			</BrowserRouter>

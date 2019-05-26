@@ -118,7 +118,7 @@ class Login extends Component {
 					if (token !== "invalid email or password") {
 						this.setState(() => ({ loginError: "" }));
 						localStorage.setItem("token", token);
-						this.props.history.push("/user/home/");
+						this.props.history.push("/user/ChannelList/");
 						this.props.handleLogin();
 					}
 				})
