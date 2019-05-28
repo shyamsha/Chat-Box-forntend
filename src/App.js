@@ -122,29 +122,42 @@ class App extends Component {
 				<div>
 					<Switch>
 						<Route path="/" component={Chat} exact />
-						<Route path="/channel/show/:id" component={Home} exact />
-						<Route path="/user/register" component={Register} exact />
-						<Route
+						{/* <Route
 							path="/user/login"
+							component={Login}
 							render={props => {
 								return (
-									<Login {...props} handleLogin={this.handleLogin} exact />
+									<Login {...props} handleLogin={this.handleLogout} exact />
 								);
 							}}
 							exact
-						/>
+						/> */}
+						<Route path="/user/register" component={Register} exact />
 						<Route
 							path="/user/logout"
 							render={props => {
 								return (
-									<Logout {...props} handleLogout={this.handleLogout} exact />
+									<Logout
+										{...props}
+										handleLogout={this.handleLogout}
+										exact
+									/>
 								);
 							}}
 							exact
 						/>
-
-						<Route path="/user/createchannel" component={CreateChannel} exact />
+						<Route
+							path="/user/createchannel"
+							component={CreateChannel}
+							exact
+						/>
 						<Route path="/user/channellist" component={ChannelList} exact />
+						{login ? (
+							<Route path="/channel/show/:id" component={Home} exact />
+						) : (
+							<Login handleLogin={this.handleLogin} exact />
+							// <Route path="/user/login" component={Login} exact />
+						)}
 					</Switch>
 				</div>
 			</BrowserRouter>

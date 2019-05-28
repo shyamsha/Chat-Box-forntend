@@ -19,7 +19,6 @@ class CreateChannel extends Component {
 				}
 			})
 			.then(response => {
-				console.log(response.data);
 				this.socket.emit("JOIN_ROOM", { channel: response.data._id });
 				this.props.history.push(`/channel/show/${response.data._id}`);
 			})

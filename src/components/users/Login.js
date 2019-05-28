@@ -110,6 +110,7 @@ class Login extends Component {
 				error: false,
 				perror: false
 			}));
+
 			axios
 				.post("/users/login", formData)
 				.then(response => {
@@ -118,7 +119,7 @@ class Login extends Component {
 					if (token !== "invalid email or password") {
 						this.setState(() => ({ loginError: "" }));
 						localStorage.setItem("token", token);
-						this.props.history.push("/user/ChannelList/");
+						//  this.props.history.push("/user/ChannelList/");
 						this.props.handleLogin();
 					}
 				})
